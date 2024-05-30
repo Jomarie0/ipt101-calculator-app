@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+</head>
+<body>
+    <style>
+        /* for all */
+        * {
+            font-family: 'Segoe Ui';
+            font-weight: 600;
+        }
+
+        body {
+            background-color: #7c878c;
+        }
+
+        .container{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        }
+
+        .calculator{
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 30px;
+            display: grid;
+            grid-template-columns: repeat(4,68px);
+        }
+
+        /* input box */
+        .txtbox {
+            grid-column: span 4;
+            height: 70px;
+            border: 0;
+            border-radius: 20px;
+            text-align: right;
+            font-size: 50px;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            padding: 0px 10px 0px 10px;
+
+        }
+
+
+        /* numpads */
+        .btn {
+            height: 48px;
+            width: 48px;
+            background-color: #ecf0f3;
+            margin: 8px;
+            font-size: 16px;
+            border: 0;
+            border-radius: 6px;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.1s;
+
+        }
+
+        /* delete one by one btn */
+        .del {
+            height: 48px;
+            width: 48px;
+            background-color: #5b99aa;
+            margin: 8px;
+            font-size: 16px;
+            border: 0;
+            border-radius: 6px;
+            color: white;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.1s;
+
+
+        }
+
+        /* equal button */
+        .btn2 {
+            grid-column: span 2 ;
+            height: 48px;
+            width: 120px;
+            background-color: #c95e5e;
+            margin: 8px;
+            font-size: 16px;
+            border: 0;
+            border-radius: 6px;
+            color: white;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.1s;
+
+        }
+
+        /* Clear all button */
+        .btn1 {
+            grid-column: span 2 ;
+            height: 48px;
+            width: 120px;
+            background-color: #5b99aa;
+            margin: 8px;
+            font-size: 16px;
+            border: 0;
+            border-radius: 6px;
+            color: white;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.1s;
+
+        }
+
+        .btn:hover {
+            background-color: #7c878c;
+            color: #ecf0f3;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn2:hover {
+            background-color: #d33f3f;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+
+
+        .btn1:hover,
+        .del:hover {
+            background-color: #33b9df;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+
+        /* .del:hover {
+            background-color: #3c93ab;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        }
+ */
+        .btn:active {
+            background-color: #c8c8c8;
+            color: black;
+            transform: translateY(2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn1:active,
+        .del:active {
+            background-color: #97e8ff;
+            color: black;
+            transform: translateY(2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn2:active {
+            background-color: #ff8989;
+            color: black;
+            transform: translateY(2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        
+    </style>
+    
+    <div class="container">
+        <!-- <div>
+            <input type="button" style="margin: 50px;">
+        </div> -->
+       <div class="calculator">
+        <input type="text" id="result" class="txtbox" placeholder="0" readonly>
+    <!-- ================================ Numpad ================================ -->
+        <input type="button" value="7" class="btn" onclick="appendNum(7)">
+        <input type="button" value="8" class="btn" onclick="appendNum(8)">
+        <input type="button" value="9" class="btn" onclick="appendNum(9)">
+        <input type="button" value="DEL" class="del" onclick="delOnebyone()">
+
+        <input type="button" value="4" class="btn" onclick="appendNum(4)">
+        <input type="button" value="5" class="btn" onclick="appendNum(5)">
+        <input type="button" value="6" class="btn" onclick="appendNum(6)">
+        <input type="button" value="+" class="btn" onclick="add()">
+
+        <input type="button" value="1" class="btn" onclick="appendNum(1)">
+        <input type="button" value="2" class="btn" onclick="appendNum(2)">
+        <input type="button" value="3" class="btn" onclick="appendNum(3)">
+        <input type="button" value="-" class="btn" onclick="sub()">
+
+        <input type="button" value="." class="btn"onclick="appendNum('.')">
+        <input type="button" value="0" class="btn"onclick="appendNum(0)">
+        <input type="button" value="/" class="btn"onclick="div()">
+        <input type="button" value="*" class="btn" onclick="mul()">
+
+        <input type="button" value="RESET" class="btn1" onclick="clearAll()">
+        <input type="button" value="=" class="btn2" onclick="calculate()">
+       </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+
+        function appendNum(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+// Operators
+        function add() {
+            currentOperator = '+';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;   
+        }
+
+        function sub() {
+            currentOperator = '-';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;   
+        }
+
+        function mul() {
+            currentOperator = '*';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;   
+        }
+
+        function div() {
+            currentOperator = '/';
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;   
+        }
+
+// calculation
+        function calculate() {
+            const result = eval(currentInput);
+            document.getElementById('result').value = result;
+            currentOperator = '';
+            currentInput = result.toString();
+
+        }
+
+// clear all
+        function clearAll() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+
+
+        }
+
+        // function delOnebyone() {
+        //     currentInput.value = currentInput.value.slice(0, -1);
+        //     document.getElementById('result').value = '';   
+
+
+        // }
+
+
+// Delete one by one
+        function updateDisplay() {
+            const result = document.getElementById('result');
+            result.value = currentInput || '0';
+        }
+
+
+        function delOnebyone() {
+            currentInput = currentInput.slice(0, -1);
+            updateDisplay();
+        }
+
+        
+    </script>
+</body>
+</html>
