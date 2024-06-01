@@ -254,15 +254,10 @@
 
 
 // Delete one by one
-        function updateDisplay() {
+       function delOnebyone() {
+            currentInput = currentInput.slice(0, -1);
             const result = document.getElementById('result');
             result.value = currentInput || '0';
-        }
-
-
-        function delOnebyone() {
-            currentInput = currentInput.slice(0, -1);
-            updateDisplay();
         }
 
         
